@@ -1,3 +1,22 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Janken App',
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
 class _MyHomePageState extends State<MyHomePage> {
   static var _message = 'ok.';
   static var _janken = <String>['グー', 'チョキ', 'パー'];
@@ -6,7 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('App Name'),
+        title: Text('じゃんけんアプリ'),
       ),
       body: Center(
         child: Column(
@@ -21,7 +40,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: TextStyle(
                   fontSize: 32.0,
                   fontWeight: FontWeight.w400,
-                  fontFamily: "Roboto"),
+                  fontFamily: "Roboto",
+                ),
+                textAlign: TextAlign.center,
               ),
             ),
             TextButton(
@@ -34,11 +55,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     fontSize: 32.0,
                     color: const Color(0xff000000),
                     fontWeight: FontWeight.w400,
-                    fontFamily: "Roboto"),
-                )
-              )
-            )
-          ]
+                    fontFamily: "Roboto",
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
