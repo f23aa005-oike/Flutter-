@@ -1,72 +1,52 @@
-import 'package:flutter/material.dart';
-
-void main() {
-  runApp(new MyApp());
-}
-class MyApp extends StatelessWidget {
+class _MyHomePageState extends State<MyHomePage> {
+  static var _message = 'ok.';
+  static var _janken = <String>['グー', 'チョキ', 'パー'];
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Generated App',
-      theme: new ThemeData(
-        brightness:Brightness.dark,
-        primarySwatch: Colors.blue,
-        primaryColor: const Color(0xFF212121),
-        // accentColor: const Color(0xFF64ffda),
-        canvasColor: const Color(0xFF303030),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('App Name'),
       ),
-      home: new MyHomePage(),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Text(
+                _message,
+                style: TextStyle(
+                  fontSize: 32.0,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: "Roboto"),
+              ),
+            ),
+            TextButton(
+              onPressed: buttonPressed,
+              child: Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Text(
+                  "Push me!",
+                  style: TextStyle(
+                    fontSize: 32.0,
+                    color: const Color(0xff000000),
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "Roboto"),
+                )
+              )
+            )
+          ]
+        ),
+      ),
     );
   }
-}
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key}) : super(key: key);
-  @override
-  _MyHomePageState createState() => new _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-    @override
-    Widget build(BuildContext context) {
-      return new Scaffold(
-        appBar: new AppBar(
-          title: new Text('App Name'),
-          ),
-        body:
-          new Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              new Text(
-              "qWerty1",
-                style: new TextStyle(fontSize:12.0,
-                color: const Color(0xFFffffff),
-                fontWeight: FontWeight.w200,
-                fontFamily: "Roboto"),
-              ),
-    
-              new Text(
-              "qWerty2",
-                style: new TextStyle(fontSize:12.0,
-                color: const Color(0xFFffffff),
-                fontWeight: FontWeight.w200,
-                fontFamily: "Roboto"),
-              ),
-    
-              new Text(
-              "qWerty3",
-                style: new TextStyle(fontSize:12.0,
-                color: const Color(0xFFffffff),
-                fontWeight: FontWeight.w200,
-                fontFamily: "Roboto"),
-              )
-            ]
-    
-          ),
-    
-      );
-    }
+  void buttonPressed() {
+    setState(() {
+      _message = (_janken..shuffle()).first;
+    });
+  }
 }
